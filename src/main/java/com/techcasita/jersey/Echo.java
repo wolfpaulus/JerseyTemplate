@@ -16,5 +16,4 @@ public class Echo {
         Logger.getLogger(getClass()).info("Request received with m=" + message);
         return "echo: " + message;
     }
-
 }
