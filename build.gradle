@@ -8,10 +8,18 @@ apply plugin: 'war'
 repositories {
     mavenCentral()
 }
-
+war {
+    archiveName 'jersey.war'
+}
 dependencies {
-    compile "javax.ws.rs:javax.ws.rs-api:2.0"
-    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.17'
+    compile "javax.ws.rs:javax.ws.rs-api:2.0.1"
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.22.1'
+    compile 'org.glassfish.jersey.ext:jersey-proxy-client:2.22.1' // needed only if proxy is used
+    runtime 'org.glassfish.jersey.bundles:jaxrs-ri:2.22.1'        // needed only if proxy is used
     compile 'log4j:log4j:1.2.17'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.json:json:20141113'
+    compile 'com.google.code.gson:gson:2.4'
+    compile('io.swagger:swagger-jersey2-jaxrs:1.5.4') { exclude(module: 'jsr311-api') } // swagger
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
